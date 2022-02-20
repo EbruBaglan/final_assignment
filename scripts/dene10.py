@@ -1,0 +1,83 @@
+#! /usr/bin/env python
+
+import rospy
+import roslaunch
+from nav_msgs.msg import Odometry
+from geometry_msgs.msg import Point
+import os
+from actionlib_msgs.msg import GoalStatusArray
+
+position_ = Point()
+
+def clbck(msg):
+	global position_
+	position_ = msg.pose.pose.position
+
+def start_task():
+    rospy.loginfo("starting...")
+
+    package = 'final_assignment'
+    executable = 'dene10_1.py'
+    node = roslaunch.core.Node(package, executable)
+
+    launch = roslaunch.scriptapi.ROSLaunch()
+    launch.start()
+
+    script = launch.launch(node)
+    print(script.is_alive())
+
+def main():
+    threshold = 0.6
+    rospy.init_node('initializer')
+
+    x = rospy.get_param("des_pos_x")
+    y = rospy.get_param("des_pos_y")
+    os.system('clear')
+    print("Hi! We are reaching the first position: x = " +
+          str(x) + ", y = " + str(y))
+    start_task()
+    os.system('clear')
+    print("Hi! We are reaching the first position: x = " +
+          str(x) + ", y = " + str(y))
+    
+    sub = rospy.Subscriber('/odom', Odometry, clbck)
+    timeout_ = False
+
+    # rospy.spin()
+
+    rate = rospy.Rate(20)
+    while not rospy.is_shutdown():
+        if abs(x-position_.x) <= threshold and abs(y-position_.y) <= threshold and not timeout_:
+            os.system('clear')
+            print("Target reached! Please insert the next position")
+            x = float(input('x : '))
+            y = float(input('y : '))
+            rospy.set_param("des_pos_x", x)
+            rospy.set_param("des_pos_y", y)
+            print("Thanks! Let's make arrangements for some seconds, then reach x = " + str(x) + ", y = " + str(y))
+            start_task()
+            os.system('clear')
+            print("Thanks! Let's make arrangements for some seconds, then reach x = " + str(x) + ", y = " + str(y))
+
+        elif timeout_:
+            os.system('clear')
+            print("Oh no! Timeout! Please insert another goal")
+            x = float(input('x : '))
+            y = float(input('y : '))
+            rospy.set_param("des_pos_x", x)
+            rospy.set_param("des_pos_y", y)
+            print("Thanks! Let's make arrangements for some seconds, then reach x = " + str(x) + ", y = " + str(y))
+            start_task()
+            os.system('clear')
+            print("Thanks! Let's make arrangements for some seconds, then reach x = " + str(x) + ", y = " + str(y))
+
+        else:
+            continue
+        
+        rate.sleep()
+
+if __name__ == "__main__":
+    try:
+        main()
+    except rospy.ROSInterruptException:
+        pass
