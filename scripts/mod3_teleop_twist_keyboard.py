@@ -1,11 +1,7 @@
 #!/usr/bin/env python
 
-# Modified teleop_twist_keyboard.py file. The output is
-# published on /cmd_vel_raw instead of usual /cmd_vel.
-
-# WARNING: disk usage in log directory [/home/ebrub/.ros/log] is over 1GB.
-# It's recommended that you use the 'rosclean' command.
-
+# Modified teleop_twist_keyboard.py file. The only change made
+# is that the output is published on /cmd_vel_raw instead of usual /cmd_vel.
 
 from __future__ import print_function
 
