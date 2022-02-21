@@ -25,7 +25,7 @@ def start_task():
     rospy.loginfo("starting...")
 
     package = 'final_assignment'
-    executable = 'dene10_1.py'
+    executable = 'mod1_send_goal.py'
     node = roslaunch.core.Node(package, executable)
 
     launch = roslaunch.scriptapi.ROSLaunch()
