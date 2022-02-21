@@ -50,10 +50,10 @@ Improvements
 
 Problems Faced and Solved
 ---------
-1) Rviz not showing laser-scan outputs (red-lines): It turns out Ubuntu may have some problems with GPU, and if the package has a GPU laser sensor, the output is not read. Some hero on the Internet commented this beautiful words: "You're getting messages, so it's definitely on. Please, try the non-GPU plugin (remove gpu_ everywhere in the sensor definition)." and "the root cause is an incompatibility with the graphics card/driver; what do you have? I also seem to remember having to upgrade to a newer version of Gazebo to get a GPU plugin working correctly, but that may have been specific to a different lidar model. In any case, the choice is yours whether to further pursue the GPU version of this plugin or settle for the CPU version."
+1) **Rviz not showing laser-scan outputs (red-lines):** It turns out Ubuntu may have some problems with GPU, and if the package has a GPU laser sensor, the output is not read. Some hero on the Internet commented this beautiful words: "You're getting messages, so it's definitely on. Please, try the non-GPU plugin (remove gpu_ everywhere in the sensor definition)." and "the root cause is an incompatibility with the graphics card/driver; what do you have? I also seem to remember having to upgrade to a newer version of Gazebo to get a GPU plugin working correctly, but that may have been specific to a different lidar model. In any case, the choice is yours whether to further pursue the GPU version of this plugin or settle for the CPU version."
 Full post is here: https://answers.ros.org/question/370627/cant-see-scan-in-rviz/
 
-2) Rviz not showing map (no map received error): This answer directed me towards the idea that "I should run map_server": https://get-help.robotigniteacademy.com/t/rviz-no-map-received/4721. Then, I went here: http://wiki.ros.org/map_server, which directed me downloading the 'navigation.git' in here: https://github.com/ros-planning/navigation . After catkin_make, I received the following error
+2) **Rviz not showing map (no map received error):** This answer directed me towards the idea that "I should run map_server": https://get-help.robotigniteacademy.com/t/rviz-no-map-received/4721. Then, I went here: http://wiki.ros.org/map_server, which directed me downloading the 'navigation.git' in here: https://github.com/ros-planning/navigation . After catkin_make, I received the following error
 
 ```bash
 Could not find a package configuration file provided by "tf2_sensor_msgs" with any of the following names:
@@ -69,9 +69,9 @@ $ sudo apt-get install ros-noetic-tf2-sensor-msgs
 ```
 Indeed, after installing that, the problem is solved.
 
-3) Constant spamming on the terminal by 'Warning: TF_REPEATED_DATA ignoring data with redundant timestamp...': This turns out to be an up-to-date issue with the ticket created on here: https://github.com/ros/geometry2/issues/467
+3) **Constant spamming on the terminal by 'Warning: TF_REPEATED_DATA ignoring data with redundant timestamp...':** This turns out to be an up-to-date issue with the ticket created on here: https://github.com/ros/geometry2/issues/467
 
-4) the rosdep view is empty: call 'sudo rosdep init' and 'rosdep update'
-5) Caused missing packages: https://answers.ros.org/question/353082/missing-packages-after-installing-rosdep-based-on-python3-rosdep2-in-noetic/
+4) **the rosdep view is empty:** call 'sudo rosdep init' and 'rosdep update'
+5) **Step 4 caused missing packages, and I had to start ROS directory all over:** https://answers.ros.org/question/353082/missing-packages-after-installing-rosdep-based-on-python3-rosdep2-in-noetic/
 
 
