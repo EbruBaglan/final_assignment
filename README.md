@@ -28,6 +28,8 @@ Roslaunch file gets user input and starts the needed nodes for the desired mod.
 
 ![alt text](https://i.ibb.co/YhX3k8y/flowchart4.png)
 
+[![flowchart4.png](https://i.postimg.cc/90sMZxGB/flowchart4.png)](https://postimg.cc/0KdPq0X6)
+
 [url=https://ibb.co/YhX3k8y][img]https://i.ibb.co/pdQxzZR/flowchart4.png[/img][/url]
 
 ![alt text](https://i.ibb.co/pdQxzZR/flowchart4.png)
