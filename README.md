@@ -43,9 +43,9 @@ Flowchart
 
 Improvements
 ---------
-1) An option to exit a node anytime can be added.
-2) rosclean command can be added if user has a huge size of .ros/log initially.
-3) Cancelling a goal mid-time can be added.
+1) Cancelling a goal mid-time can be added. 
+3) An option to exit a node anytime can be added.
+4) rosclean command can be added if user has a huge size of .ros/log initially.
 
 
 Problems Faced and Solved
