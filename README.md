@@ -1,28 +1,24 @@
 Research Track 1 - Assignment 3 - Solution
 ================================
 
-This is yet another simple and portable robot simulator which runs in a circuit. The requirements of the assignment are by using ROS and C++,
-- to make robot move autonomously in the circuit as in the first assignment,
-- to have a node to control the robot, and an additional node to interact with user to increase/decrease of the robot speed and reset position.
+This is yet another simple and portable robot simulator. The architecture should be able to get the user request, and let the robot execute one of the following behaviors (depending on the user’s input):
+1) autonomously reach a x,y coordinate inserted by the user
+2) let the user drive the robot with the keyboard
+3) let the user drive the robot assisting them to avoid collisions.
 
 Installing and running
 ----------------------
 
-After you download and build the workspace, first initialize roscore by hitting,
+After you download the workspace just hit,
 ```bash
-$ roscore &
+$ roslaunch final_assignment overlord opt:=mod2
 ```
-then go to the main directory on package and just hit
+and change the mod as you wish.
 
+Note: for mod1, you can further extend your input by
 ```bash
-$ ./runew.sh
+$ roslaunch final_assignment overlord opt:=mod1 des_x:=-1.0 des_y=-1.0
 ```
-The simulation environment and all the nodes within are initiated just by that.
-
-You will be at the user interface asking for increase/decrease/reset command.
-
-Here is the video for run and proof that code works:
-https://youtu.be/xC3xZsW8AZs
 
 Structure
 ---------
