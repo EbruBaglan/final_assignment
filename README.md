@@ -17,7 +17,7 @@ and change the mod as you wish.
 
 Note: for mod1, you can further extend your input by
 ```bash
-$ roslaunch final_assignment overlord.launch opt:=mod1 des_x:=-1.0 des_y=-1.0
+$ roslaunch final_assignment overlord.launch opt:=mod1 des_x:=-1.0 des_y:=-1.0
 ```
 
 Structure
