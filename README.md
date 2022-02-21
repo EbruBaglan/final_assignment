@@ -26,7 +26,7 @@ Roslaunch file gets user input and starts the needed nodes for the desired mod.
 [![flowchart4.png](https://i.postimg.cc/90sMZxGB/flowchart4.png)](https://postimg.cc/0KdPq0X6)
 ![alt text](https://i.ibb.co/G0B3j1z/flowchart3.png)
 
-
+[![flowchart4.png](https://i.postimg.cc/90sMZxGB/flowchart4.png)](https://postimg.cc/0KdPq0X6)
 
 There are 2 nodes to assure communication.
 `userinterface` node asks user for input,
