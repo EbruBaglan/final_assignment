@@ -23,7 +23,7 @@
 
 <group if="$(eval mod == 'mod3')">
   <!-- Teleopt- keyboard   https://answers.ros.org/question/231271/setting-argument-for-teleop-twist-keyboard-in-launch-file/-->
-  <node pkg="final_assignment" type="sonuncu2.py" name="sonuncu2" output="screen" launch-prefix="gnome-terminal --tab --title=&quot;Mod3: User Input with Coll. Avoid.&quot; -- "/>
+  <node pkg="final_assignment" type="mod3_teleop_twist_keyboard.py" name="mod3_teleop_twist_keyboard" output="screen" launch-prefix="gnome-terminal --tab --title=&quot;Mod3: User Input with Coll. Avoid.&quot; -- "/>
   <node pkg="final_assignment" type="ek2.py" name="ek2" output="screen" launch-prefix="gnome-terminal --tab --title=&quot;Outputs&quot; -- " />
 </group>
 

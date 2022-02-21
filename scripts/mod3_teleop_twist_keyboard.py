@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+# Modified teleop_twist_keyboard.py file. The output is
+# published on /cmd_vel_raw instead of usual /cmd_vel. 
+
 from __future__ import print_function
 
 import threading
@@ -159,7 +162,7 @@ def vels(speed, turn):
 if __name__=="__main__":
     settings = termios.tcgetattr(sys.stdin)
 
-    rospy.init_node('teleop_twist_keyboard')
+    rospy.init_node('mod3_teleop_twist_keyboard')
 
     speed = rospy.get_param("~speed", 0.5)
     turn = rospy.get_param("~turn", 1.0)
