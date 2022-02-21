@@ -9,48 +9,37 @@ This is yet another simple and portable robot simulator. The architecture should
 Installing and running
 ----------------------
 
-After you download the workspace just hit,
-```bash
-$ roslaunch final_assignment overlord.launch opt:=mod2
-```
-and change the mod as you wish.
+After you download the workspace for the following desired mods, just hit,
 
-Note: for mod1, you can further extend your input by
+Mod1: autonomously reach a x,y coordinate inserted by the user
 ```bash
 $ roslaunch final_assignment overlord.launch opt:=mod1 des_x:=-5.0 des_y:=5.0
 ```
 
-Structure
+Mod2: let the user drive the robot with the keyboard
+```bash
+$ roslaunch final_assignment overlord.launch opt:=mod2
+```
+
+Mod3: let the user drive the robot assisting them to avoid collisions.
+```bash
+$ roslaunch final_assignment overlord.launch opt:=mod2
+```
+
+Structure and How it works
 ---------
-Roslaunch file gets user input and starts the needed nodes for the desired mod.
-![alt text](https://i.ibb.co/cbtbdBN/structure.png)
-[url=https://ibb.co/YhX3k8y][img]https://i.ibb.co/YhX3k8y/flowchart4.png[/img][/url]
+Roslaunch file gets user input mod and starts the needed nodes for the desired mod.
 
-![alt text](https://i.ibb.co/YhX3k8y/flowchart4.png)
+Mod1 starts an initializer node, which then calls for another node through roslaunch to send user input goals to move_base/goal topic.
 
-[![flowchart4.png](https://i.postimg.cc/90sMZxGB/flowchart4.png)](https://postimg.cc/0KdPq0X6)
+Mod2 calls for teleopt_twist_keyboard to take user direction inputs.
 
-[url=https://ibb.co/YhX3k8y][img]https://i.ibb.co/pdQxzZR/flowchart4.png[/img][/url]
-
-![alt text](https://i.ibb.co/pdQxzZR/flowchart4.png)
-
-There are 2 nodes to assure communication.
-`userinterface` node asks user for input,
-`controller` node provides both autonomous movement, and user-input movement.
-
-There is one service.
-`service` service has the structure of `char` request and `float32` response. Response is the increase/decrease value to the velocity.
-
-How it works?
----------
-Automous moving part is straighforward. As long as there is no obstacle in front, robot keeps moving. When the front distance lowers to a certain distance, robot checks right and left surroundings. Whichever side is the farthest, robots turns toward that direction.
-
-When user inputs a value, userinterface calls the service with the request char. Controller node, checks the request in the service structure, and puts an increment/decrement response into service, and it itself uses it in linear.x velocity assignment, and publishes it into cmd_vel.
+Mod3 calls for a modified version teleopt_twist_keyboard(to publish on /cmd_vel_**raw**) to take user direction inputs, and calls another node to manipulate user inputs when user feels like crashing into a wall.
 
 Flowchart
 ---------
-![flowchart4.png](https://i.postimg.cc/90sMZxGB/flowchart4.png)](https://postimg.cc/0KdPq0X6)
-![alt text](https://i.postimg.cc/90sMZxGB/flowchart4.png)
+![flowchart6](https://user-images.githubusercontent.com/71343894/154901294-0254529a-75bb-448d-a042-693fac1bd328.png)
+
 
 Problems Faced and Solved
 ---------
@@ -81,6 +70,6 @@ Indeed, after installing that, the problem is solved.
 
 Improvements
 ---------
-An option to exit a node anytime can be added.
-rosclean command can be added.
-cancelling a goal mid-time can be added.
+1) An option to exit a node anytime can be added.
+2) rosclean command can be added if user has a huge size of .ros/log initially.
+3) Cancelling a goal mid-time can be added.
