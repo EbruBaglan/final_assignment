@@ -23,7 +23,7 @@ $ roslaunch final_assignment overlord.launch opt:=mod1 des_x:=-5.0 des_y:=5.0
 Structure
 ---------
 Roslaunch file gets user input and starts the needed nodes for the desired mod.
-![alt text](https://i.postimg.cc/90sMZxGB/flowchart4.png)
+![alt text](https://postimg.cc/0KdPq0X6)
 
 There are 2 nodes to assure communication.
 `userinterface` node asks user for input,
