@@ -25,7 +25,6 @@ Structure
 Roslaunch file gets user input and starts the needed nodes for the desired mod.
 ![alt text](https://i.postimg.cc/90sMZxGB/flowchart4.png)
 
-
 There are 2 nodes to assure communication.
 `userinterface` node asks user for input,
 `controller` node provides both autonomous movement, and user-input movement.
