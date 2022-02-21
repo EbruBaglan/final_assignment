@@ -23,7 +23,7 @@ $ roslaunch final_assignment overlord.launch opt:=mod1 des_x:=-5.0 des_y:=5.0
 Structure
 ---------
 Roslaunch file gets user input and starts the needed nodes for the desired mod.
-![alt text](https://i.ibb.co/cbtbdBN/structure.png)
+![alt text](https://i.ibb.co/G0B3j1z/flowchart3.png)
 
 
 
