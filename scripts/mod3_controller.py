@@ -4,6 +4,10 @@ import rospy
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import LaserScan
 
+vel_ = Twist()
+vel_.linear.x = 0.0
+vel_.angular.z = 0.0 
+
 pub = rospy.Publisher("/cmd_vel", Twist)
 
 def take_action(regions):
@@ -61,29 +65,17 @@ def clbck_laser(msg):
         'fleft':  min(min(msg.ranges[432:575]), 10),
         'left':   min(min(msg.ranges[576:719]), 10),
     }
-
     take_action(regions)
-    rospy.loginfo(regions)
     
 def clbck2(msg):
     global vel_
     vel_ = msg
-    rospy.loginfo("cmd_vel_raw subscriber @[%f, %f, %f]", vel_.linear.x, vel_.linear.y, vel_.angular.z)
 
 def controller():
-    rospy.init_node("mod3_keyb_coll_avoid")
+    rospy.init_node("mod3_controller")
     
     rospy.Subscriber('/scan', LaserScan, clbck_laser)
-    rospy.Subscriber('/cmd_vel_raw', Twist, clbck2)
-
-
-    # rate = rospy.Rate(20)
-    # while not rospy.is_shutdown():
-
-
-    #     rate.sleep()
-
-    
+    rospy.Subscriber('/cmd_vel_raw', Twist, clbck2)   
     rospy.spin()
 
 if __name__ == '__main__':
