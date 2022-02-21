@@ -73,4 +73,6 @@ Indeed, after installing that, the problem is solved.
 
 Improvements
 ---------
-
+An option to exit a node anytime can be added.
+rosclean command can be added.
+cancelling a goal mid-time can be added.
