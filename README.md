@@ -24,6 +24,9 @@ Structure
 ---------
 Roslaunch file gets user input and starts the needed nodes for the desired mod.
 ![alt text](https://i.ibb.co/cbtbdBN/structure.png)
+[url=https://ibb.co/YhX3k8y][img]https://i.ibb.co/YhX3k8y/flowchart4.png[/img][/url]
+
+![alt text](https://i.ibb.co/YhX3k8y/flowchart4.png)
 
 There are 2 nodes to assure communication.
 `userinterface` node asks user for input,
