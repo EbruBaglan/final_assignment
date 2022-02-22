@@ -23,7 +23,7 @@ $ roslaunch final_assignment overlord.launch opt:=mod2
 
 Mod3: let the user drive the robot assisting them to avoid collisions.
 ```bash
-$ roslaunch final_assignment overlord.launch opt:=mod2
+$ roslaunch final_assignment overlord.launch opt:=mod3
 ```
 
 Structure and How it works
