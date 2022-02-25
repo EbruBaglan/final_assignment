@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-# Modified teleop_twist_keyboard.py file. The only change made
-# is that the output is published on /cmd_vel_raw instead of usual /cmd_vel.
-
 from __future__ import print_function
 
 import threading
@@ -78,8 +75,6 @@ class PublishThread(threading.Thread):
         self.condition = threading.Condition()
         self.done = False
 
-        # Set timeout to None if rate is 0 (causes new_message to wait forever
-        # for new data to publish)
         if rate != 0.0:
             self.timeout = 1.0 / rate
         else:
@@ -106,7 +101,6 @@ class PublishThread(threading.Thread):
         self.th = th
         self.speed = speed
         self.turn = turn
-        # Notify publish thread that we have a new message.
         self.condition.notify()
         self.condition.release()
 
@@ -119,10 +113,8 @@ class PublishThread(threading.Thread):
         twist = Twist()
         while not self.done:
             self.condition.acquire()
-            # Wait for a new message or timeout.
             self.condition.wait(self.timeout)
 
-            # Copy state into twist message.
             twist.linear.x = self.x * self.speed
             twist.linear.y = self.y * self.speed
             twist.linear.z = self.z * self.speed
@@ -132,10 +124,8 @@ class PublishThread(threading.Thread):
 
             self.condition.release()
 
-            # Publish.
             self.publisher.publish(twist)
 
-        # Publish stop message when thread exits.
         twist.linear.x = 0
         twist.linear.y = 0
         twist.linear.z = 0
@@ -201,8 +191,6 @@ if __name__=="__main__":
                     print(msg)
                 status = (status + 1) % 15
             else:
-                # Skip updating cmd_vel if key timeout and robot already
-                # stopped.
                 if key == '' and x == 0 and y == 0 and z == 0 and th == 0:
                     continue
                 x = 0

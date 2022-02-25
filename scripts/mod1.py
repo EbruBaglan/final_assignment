@@ -1,11 +1,5 @@
 #! /usr/bin/env python
 
-# This node is created to initiate mod1_send_goal node
-# everytime user sends a new input. Roslaunch is used for
-# this purpose. When the goal is within a threashold distance,
-# the goal is considered to be reached and asked user for
-# new goal position.
-
 import rospy
 import roslaunch
 from nav_msgs.msg import Odometry
@@ -16,12 +10,10 @@ from datetime import datetime
 
 position_ = Point()
 
-# callbacks
 def clbck(msg):
 	global position_
 	position_ = msg.pose.pose.position
 
-# the function to initiate mod1_send_goal
 def start_task():
     rospy.loginfo("starting...")
 
@@ -39,13 +31,12 @@ def main():
     threshold = 0.6
     rospy.init_node('mod1')
 
-    # The first goal positions are taken from parameter server
     x = rospy.get_param("des_pos_x")
     y = rospy.get_param("des_pos_y")
     os.system('clear')
     print("Hi! We are reaching the first position: x = " + str(x) + ", y = " + str(y))
     start_task()
-    # clear is widely used to avoid log outputs of roslaunch
+
     os.system('clear')
     print("Hi! We are reaching the first position: x = " + str(x) + ", y = " + str(y))
     
