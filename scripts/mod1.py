@@ -12,6 +12,7 @@ from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Point
 import os
 from actionlib_msgs.msg import GoalStatusArray
+from datetime import datetime
 
 position_ = Point()
 
@@ -49,10 +50,16 @@ def main():
     print("Hi! We are reaching the first position: x = " + str(x) + ", y = " + str(y))
     
     sub = rospy.Subscriber('/odom', Odometry, clbck)
+    start_time = datetime.now()
     timeout_ = False
 
     rate = rospy.Rate(20)
-    while not rospy.is_shutdown():
+    
+    while not rospy.is_shutdown():    
+        time_delta = datetime.now() - start_time
+        if time_delta.total_seconds() > 90:
+            timeout_=True
+        
         if abs(x-position_.x) <= threshold and abs(y-position_.y) <= threshold and not timeout_:
             os.system('clear')
             print("Target reached! Please insert the next position")
@@ -64,6 +71,7 @@ def main():
             start_task()
             os.system('clear')
             print("Thanks! Let's make arrangements for some seconds, then reach x = " + str(x) + ", y = " + str(y))
+            start_time = datetime.now()
 
         elif timeout_:
             os.system('clear')
@@ -76,6 +84,8 @@ def main():
             start_task()
             os.system('clear')
             print("Thanks! Let's make arrangements for some seconds, then reach x = " + str(x) + ", y = " + str(y))
+            timeout_ = False
+            start_time = datetime.now()
 
         else:
             continue
